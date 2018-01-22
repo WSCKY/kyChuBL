@@ -28,10 +28,8 @@
 /* FATFS DUMMY BYTE -------------------------------------------------------- */
 #define RESERVED_BYTE                  ((uint8_t)0x00)
 
-#define FAT_TABLE_ADDR						     0x8003800                /* 14K */
-#define FLASH_PAGE_SIZE						     ((uint32_t)0x00000800)   /* FLASH Page Size */
 /* SECTOR SIZE ------------------------------------------------------------- */
-#define SECTOR_SIZE							       ((uint32_t)0x200)
+#define SECTOR_SIZE                    ((uint32_t)0x200)
 #define SECTOR_IDX_TO_ADDR(idx)        ((idx) << 9)
 #define SECTORS_CONV_BYTES(sec)        (SECTOR_IDX_TO_ADDR(sec))
 #define BYTES_CONV_SECTORS(num)        ((num) >> 9)
