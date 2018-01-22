@@ -11,9 +11,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_hal.h"
 #include "stm32f7xx.h"
-#ifdef USE_RTOS_SYSTICK
-#include <cmsis_os.h>
-#endif
 #include "stm32f7xx_it.h"
 
 /* Private typedef -----------------------------------------------------------*/
@@ -37,9 +34,6 @@ void SysTick_Handler(void)
 {
 	HAL_IncTick();
 	HAL_SYSTICK_IRQHandler();
-#ifdef USE_RTOS_SYSTICK
-	osSystickHandler();
-#endif
 }
 
 /*
