@@ -45,6 +45,12 @@ int main(void)
 	/* Configure the System clock to have a frequency of 216 MHz */
 	SystemClock_Config();
 
+	/* Board support package init */
+	BSP_Init();
+	BOARD_POWER_ON();
+
+	LED_GREEN_ON(); LED_RED_ON(); LED_BLUE_ON();
+
 	/* Init Device Library */
 	USBD_Init(&USBD_Device, &MSC_Desc, 0);
 
@@ -58,7 +64,11 @@ int main(void)
 	USBD_Start(&USBD_Device);
 
 	/* Run Application (Interrupt mode) */
-	while(1) {}
+	LED_RED_OFF(); LED_BLUE_OFF(); LED_GREEN_OFF();
+	while(1) {
+		HAL_Delay(100);
+		LED_GREEN_TOG();
+	}
 }
 
 /**

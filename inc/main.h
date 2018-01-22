@@ -19,6 +19,8 @@
 #include "usbd_msc.h"
 #include "usbd_storage.h"
 
+#include "HardwareMacros.h"
+
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
