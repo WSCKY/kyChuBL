@@ -14,11 +14,15 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "Board_GPIOs.h"
+#include "Board_UARTs.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported variables --------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported definitions ------------------------------------------------------*/
+#if (DEBUG_LOG_ENABLE)
+#define DEBUG_PORT_SEND_BYTE                     Uart7PushOneByte
+#endif /* DEBUG_LOG_ENABLE */
 /* Exported macros -----------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 HAL_StatusTypeDef BSP_Init(void);
