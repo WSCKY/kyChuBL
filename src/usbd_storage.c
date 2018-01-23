@@ -177,12 +177,7 @@ int8_t STORAGE_Read(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_l
 					}
 				} else {
 					/* DATA IN FLASH */
-					if(blk_addr == README_SECT_IDX + README_SECT_NUM) {
-						blk_copy_number = 1;
-//						USBD_memcpy(buf + SECTOR_IDX_TO_ADDR(blk_addr_offset), TestBuffer, SECTORS_CONV_BYTES(blk_copy_number));
-					} else {
-						blk_copy_number = blk_len;
-					}
+					blk_copy_number = blk_len;
 				}
 			}
 			blk_len -= blk_copy_number; blk_addr += blk_copy_number; blk_addr_offset += blk_copy_number;
@@ -222,10 +217,14 @@ int8_t STORAGE_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_
 				if(blk_addr < README_SECT_IDX + README_SECT_NUM) {
 					if(blk_addr == README_SECT_IDX + README_SECT_NUM - 1) {/* END OF FILE */
 						blk_wrte_number = 1;
-//						USBD_memcpy(README_DATA + SECTORS_CONV_BYTES(README_SECT_NUM - 1), buf + SECTOR_IDX_TO_ADDR(blk_addr_offset), README_TAIL_LEN);
+#if (README_FILE_EDITABLE)
+						USBD_memcpy(README_DATA + SECTORS_CONV_BYTES(README_SECT_NUM - 1), buf + SECTOR_IDX_TO_ADDR(blk_addr_offset), README_TAIL_LEN);
+#endif /* README_FILE_EDITABLE */
 					} else {
 						blk_wrte_number = (README_SECT_IDX + README_SECT_NUM - blk_addr - 1 > blk_len) ? blk_len : README_SECT_IDX + README_SECT_NUM - blk_addr - 1;
-//						USBD_memcpy(README_DATA + SECTOR_IDX_TO_ADDR(blk_addr - README_SECT_IDX), buf + SECTOR_IDX_TO_ADDR(blk_addr_offset), SECTORS_CONV_BYTES(blk_wrte_number));
+#if (README_FILE_EDITABLE)
+						USBD_memcpy(README_DATA + SECTOR_IDX_TO_ADDR(blk_addr - README_SECT_IDX), buf + SECTOR_IDX_TO_ADDR(blk_addr_offset), SECTORS_CONV_BYTES(blk_wrte_number));
+#endif /* README_FILE_EDITABLE */
 					}
 				} else {
 					/* DATA IN FLASH */
