@@ -22,6 +22,10 @@
 /* User Application start address */
 #define APPLICATION_START_ADDRESS                (0x08008000)
 
+/* FAT12 file system */
+#define BOOT_TABLE_EDITABLE                      (0)       /* format operation */
+#define README_FILE_EDITABLE                     (0)
+
 /* Exported macros -----------------------------------------------------------*/
 /* Debug enable */
 #define DEBUG_LOG_ENABLE                         (0)
