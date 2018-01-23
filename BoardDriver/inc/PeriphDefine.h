@@ -1,6 +1,6 @@
 #ifndef __PERIPHDEFINE_H
 #define __PERIPHDEFINE_H
 
-#define DEBUG_LOG_ENABLE                         (1)
+#include "BootloaderConfig.h"
 
 #endif /* __PERIPHDEFINE_H */
