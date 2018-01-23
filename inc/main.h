@@ -20,6 +20,7 @@
 #include "usbd_storage.h"
 
 #include "HardwareMacros.h"
+#include "BootloaderConfig.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
