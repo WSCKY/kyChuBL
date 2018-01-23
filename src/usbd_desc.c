@@ -55,13 +55,10 @@
 #define USBD_VID                      0x0483
 #define USBD_PID                      0x5720
 #define USBD_LANGID_STRING            0x409
-#define USBD_MANUFACTURER_STRING      "STMicroelectronics"
-#define USBD_PRODUCT_HS_STRING        "Mass Storage in HS Mode"
-#define USBD_PRODUCT_FS_STRING        "Mass Storage in FS Mode"
-#define USBD_CONFIGURATION_HS_STRING  "MSC Config"
-#define USBD_INTERFACE_HS_STRING      "MSC Interface"
-#define USBD_CONFIGURATION_FS_STRING  "MSC Config"
-#define USBD_INTERFACE_FS_STRING      "MSC Interface"
+#define USBD_MANUFACTURER_STRING      "kyChu FC"
+#define USBD_PRODUCT_STRING           "Firmware Upgrade Disk"
+#define USBD_CONFIGURATION_STRING     "MSC Config"
+#define USBD_INTERFACE_STRING         "MSC Interface"
 
 /* Private macro -------------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
@@ -171,14 +168,7 @@ uint8_t *USBD_MSC_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
   */
 uint8_t *USBD_MSC_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
 {
-  if(speed == USBD_SPEED_HIGH)
-  {   
-    USBD_GetString((uint8_t *)USBD_PRODUCT_HS_STRING, USBD_StrDesc, length);
-  }
-  else
-  {
-    USBD_GetString((uint8_t *)USBD_PRODUCT_FS_STRING, USBD_StrDesc, length);    
-  }
+  USBD_GetString((uint8_t *)USBD_PRODUCT_STRING, USBD_StrDesc, length);
   return USBD_StrDesc;
 }
 
@@ -218,14 +208,7 @@ uint8_t *USBD_MSC_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
   */
 uint8_t *USBD_MSC_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
 {
-  if(speed == USBD_SPEED_HIGH)
-  {  
-    USBD_GetString((uint8_t *)USBD_CONFIGURATION_HS_STRING, USBD_StrDesc, length);
-  }
-  else
-  {
-    USBD_GetString((uint8_t *)USBD_CONFIGURATION_FS_STRING, USBD_StrDesc, length); 
-  }
+  USBD_GetString((uint8_t *)USBD_CONFIGURATION_STRING, USBD_StrDesc, length);
   return USBD_StrDesc;  
 }
 
@@ -237,15 +220,8 @@ uint8_t *USBD_MSC_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
   */
 uint8_t *USBD_MSC_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
 {
-  if(speed == USBD_SPEED_HIGH)
-  {
-    USBD_GetString((uint8_t *)USBD_INTERFACE_HS_STRING, USBD_StrDesc, length);
-  }
-  else
-  {
-    USBD_GetString((uint8_t *)USBD_INTERFACE_FS_STRING, USBD_StrDesc, length);
-  }
-  return USBD_StrDesc;  
+  USBD_GetString((uint8_t *)USBD_INTERFACE_STRING, USBD_StrDesc, length);
+  return USBD_StrDesc;
 }
 /**
   * @brief  Create the serial number string descriptor 
