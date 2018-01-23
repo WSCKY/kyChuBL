@@ -47,8 +47,13 @@
 #define TOTAL_SECTORS                  (BYTES_CONV_SECTORS(FATFS_USED_SIZE + FLASH_USER_SIZE))
 
 /* Readme.txt file data ---------------------------------------------------- */
+#define README_FILE_EDITABLE           (0)
 #define README_FILE_LEN                301
-static const unsigned char README_DATA[README_FILE_LEN] =
+
+#if !(README_FILE_EDITABLE)
+const
+#endif
+static unsigned char README_DATA[README_FILE_LEN] =
 "kyChu FC Automatically-generated file. Do not edit!\r\n"
 "Boot Version: V1.0.0\r\n"
 "Flight Control Version: V1.0.0\r\n"
