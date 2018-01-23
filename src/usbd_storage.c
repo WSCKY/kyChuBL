@@ -201,8 +201,12 @@ int8_t STORAGE_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_
 	if(lun == 0) {
 		do {
 			if(blk_addr == BOOT_TABLE_SECTOR_IDX) {
+#if (BOOT_TABLE_EDITABLE)
 				blk_wrte_number = 1;
 				USBD_memcpy(BOOT_TABLE, buf + SECTOR_IDX_TO_ADDR(blk_addr_offset), BOOT_TABLE_USED_SIZE);
+#else
+				return FATFS_ERROR;
+#endif
 			} else if(blk_addr < FAT2_TABLE_SECTOR_IDX) {
 				blk_wrte_number = (FAT2_TABLE_SECTOR_IDX - blk_addr > blk_len) ? blk_len : FAT2_TABLE_SECTOR_IDX - blk_addr;
 				USBD_memcpy(FATn_TABLE + SECTOR_IDX_TO_ADDR(blk_addr - FAT1_TABLE_SECTOR_IDX), buf + SECTOR_IDX_TO_ADDR(blk_addr_offset), SECTORS_CONV_BYTES(blk_wrte_number));
