@@ -68,7 +68,7 @@ int main(void)
 	while(1) {
 		HAL_Delay(100);
 		LED_GREEN_TOG();
-		printf("Hello kyChu!\n");
+		DEBUG("Hello kyChu!");
 	}
 }
 
