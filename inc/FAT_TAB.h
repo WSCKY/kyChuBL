@@ -47,7 +47,6 @@
 #define TOTAL_SECTORS                  (BYTES_CONV_SECTORS(FATFS_USED_SIZE + FLASH_USER_SIZE))
 
 /* Readme.txt file data ---------------------------------------------------- */
-#define README_FILE_EDITABLE           (0)
 #define README_FILE_LEN                301
 
 #if (README_FILE_EDITABLE)
@@ -71,7 +70,11 @@ const static unsigned char README_DATA[README_FILE_LEN] =
 #define BOOT_TABLE_SECTOR_IDX          (0)                 /* sector offset */
 #define BOOT_TABLE_OFFSET              (0)                 /* address offset */
 #define BOOT_TABLE_USED_SIZE           (62)                /* number of bytes used */
+#if (BOOT_TABLE_EDITABLE)
 static uint8_t BOOT_TABLE[62] = { /* MSWIN4.1 */
+#else
+const static uint8_t BOOT_TABLE[62] = { /* MSWIN4.1 */
+#endif /* BOOT_TABLE_EDITABLE */
 0xEB, 0x3C, 0x90,  'k',  'y',  'C',  'h',  'u',  '^',  '_',  '^', __LOBYTE(SECTOR_SIZE), __HIBYTE(SECTOR_SIZE), 0x01, 0x01, 0x00, 
 0x02, 0x20, 0x00, __LOBYTE(TOTAL_SECTORS), __HIBYTE(TOTAL_SECTORS), 0xF0, 0x03, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 
 0x00, 0x00, 0x00, 0x00, 0x00, RESERVED_BYTE, 0x29, 0x00, 0x00, 0x00, 0x00,  'k',  'y',  '.',  'C',  'h', 
