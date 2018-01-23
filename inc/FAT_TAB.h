@@ -50,10 +50,11 @@
 #define README_FILE_EDITABLE           (0)
 #define README_FILE_LEN                301
 
-#if !(README_FILE_EDITABLE)
-const
+#if (README_FILE_EDITABLE)
+static unsigned char README_DATA[1024] =
+#else
+const static unsigned char README_DATA[README_FILE_LEN] =
 #endif
-static unsigned char README_DATA[README_FILE_LEN] =
 "kyChu FC Automatically-generated file. Do not edit!\r\n"
 "Boot Version: V1.0.0\r\n"
 "Flight Control Version: V1.0.0\r\n"
