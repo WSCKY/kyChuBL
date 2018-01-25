@@ -16,6 +16,8 @@
 #include "Board_GPIOs.h"
 #include "Board_UARTs.h"
 
+#include "Flash_If.h"
+
 /* Exported types ------------------------------------------------------------*/
 /* Exported variables --------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
