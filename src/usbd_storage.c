@@ -93,13 +93,13 @@ USBD_StorageTypeDef USBD_DISK_fops = {
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief  Initializes the storage unit (medium)       
+  * @brief  Initializes the storage unit (medium)
   * @param  lun: Logical unit number
   * @retval Status (0 : OK / -1 : Error)
   */
 int8_t STORAGE_Init(uint8_t lun)
 {
-  return FATFS_OK;
+  return Flash_If_Init();
 }
 
 /**
