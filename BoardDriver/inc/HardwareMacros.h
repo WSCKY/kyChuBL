@@ -37,6 +37,9 @@
 #define LED_GREEN_ON()                           Board_GPIO_SetLevelHigh(2)
 #define LED_GREEN_OFF()                          Board_GPIO_SetLevelLow(2)
 #define LED_GREEN_TOG()                          Board_GPIO_SetLevelToggle(2)
+
+/* USB Plug-in state */
+#define USB_PLUG_IN_STATE()                      (Board_GPIO_ReadLevel(13) == GPIO_PIN_SET)
 /* Exported functions ------------------------------------------------------- */
 
 #endif /* __HARDWAREMACROS_H */
