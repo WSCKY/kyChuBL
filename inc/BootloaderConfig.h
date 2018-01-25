@@ -22,6 +22,10 @@
 /* User Application start address */
 #define APPLICATION_START_ADDRESS                (0x08010000)
 
+/* User Application RAM region */
+#define APPLICATION_RAM_REGION_ORIGIN            (0x20000000) /* begin of RAM */
+#define APPLICATION_RAM_REGION_END               (0x20050000) /* end of RAM */
+
 /* FAT12 file system */
 #define BOOT_TABLE_EDITABLE                      (0)       /* format operation */
 #define README_FILE_EDITABLE                     (0)
