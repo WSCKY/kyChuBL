@@ -66,8 +66,14 @@ int main(void)
 	/* Run Application (Interrupt mode) */
 	LED_RED_OFF(); LED_BLUE_OFF(); LED_GREEN_OFF();
 	while(1) {
+		if(USB_PLUG_IN_STATE()) {
+			LED_GREEN_TOG();
+			LED_BLUE_OFF();
+		} else {
+			LED_BLUE_TOG();
+			LED_GREEN_OFF();
+		}
 		HAL_Delay(100);
-		LED_GREEN_TOG();
 		DEBUG("Hello kyChu!");
 	}
 }
