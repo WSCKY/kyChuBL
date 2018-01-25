@@ -20,7 +20,7 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported definitions ------------------------------------------------------*/
 /* User Application start address */
-#define APPLICATION_START_ADDRESS                (0x08008000)
+#define APPLICATION_START_ADDRESS                (0x08010000)
 
 /* FAT12 file system */
 #define BOOT_TABLE_EDITABLE                      (0)       /* format operation */
