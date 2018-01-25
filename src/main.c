@@ -16,6 +16,8 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 USBD_HandleTypeDef USBD_Device;
+pFunction JumpToApplication;
+uint32_t JumpAddress;
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
@@ -51,6 +53,20 @@ int main(void)
 
 	LED_GREEN_ON(); LED_RED_ON(); LED_BLUE_ON();
 
+	if(!USB_PLUG_IN_STATE()) {
+		/* Test if user code is programmed starting from APPLICATION_START_ADDRESS address */
+		if(((*(__IO uint32_t*)APPLICATION_START_ADDRESS) >= APPLICATION_RAM_REGION_ORIGIN) && \
+		   ((*(__IO uint32_t*)APPLICATION_START_ADDRESS) <= APPLICATION_RAM_REGION_END)) {
+			/* Jump to user application */
+			JumpAddress = *(__IO uint32_t*) (APPLICATION_START_ADDRESS + 4);
+			JumpToApplication = (pFunction) JumpAddress;
+
+			/* Initialize user application's Stack Pointer */
+			__set_MSP(*(__IO uint32_t*) APPLICATION_START_ADDRESS);
+			JumpToApplication();
+		}
+	}
+
 	/* Init Device Library */
 	USBD_Init(&USBD_Device, &MSC_Desc, 0);
 
@@ -66,14 +82,8 @@ int main(void)
 	/* Run Application (Interrupt mode) */
 	LED_RED_OFF(); LED_BLUE_OFF(); LED_GREEN_OFF();
 	while(1) {
-		if(USB_PLUG_IN_STATE()) {
-			LED_GREEN_TOG();
-			LED_BLUE_OFF();
-		} else {
-			LED_BLUE_TOG();
-			LED_GREEN_OFF();
-		}
-		HAL_Delay(100);
+		LED_BLUE_TOG();
+		HAL_Delay(200);
 		DEBUG("Hello kyChu!");
 	}
 }
